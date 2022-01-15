@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table style="width:100%" cellpadding="15">
+    <tr class="this">
+        <th style="font-size:20px;">Type</th>
+        <th style="font-size:20px;">Time</th>
+        <th style="font-size:20px;">Stock</th>
+        <th style="font-size:20px;">Shares</th>
+        <th style="font-size:20px;">Point of Purchase/Sale Price</th>
+        <th style="font-size:20px;">Value of Holding</th>
+    </tr>
+    {% for i in range(row_len) %}
+    <tr>
+        <td>{{ rows[i]["type"] }}</td>
+        <td>{{ rows[i]["time"] }}</td>
+        <td>{{ rows[i]["stock"] }}</td>
+        <td>{{ rows[i]["shares"] }}</td>
+        <td>{{ "$%.2f"|format(prices_at_pot[i]) }}</td>
+        <td>{{ "$%.2f"|format(total_prices[i]) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<h1>Net Worth: {{ "$%.2f"|format(net_worth) }}</h1>
+<h3>Cash on hand: {{ "$%.2f"|format(cash_on_hand) }}</h3>
+
+<table style="width:100%" cellpadding="15">
+    <tr class="this">
+        <th style="font-size:20px;">Stock</th>
+        <th style="font-size:20px;">Shares</th>
+        <th style="font-size:20px;">Point of Purchase Price</th>
+        <th style="font-size:20px;">Current Price</th>
+        <th style="font-size:20px;">Value of Holding</th>
+        <th style="font-size:20px;">Net Profit</th>
+    </tr>
+    {% for i in range(row_len) %}
+    <tr>
+        <td>{{ rows[i]["stock"] }}</td>
+        <td>{{ rows[i]["shares"] }}</td>
+        <td>{{ "$%.2f"|format(prices_at_pop[i]) }}</td>
+        <td>{{ "$%.2f"|format(prices[i]) }}</td>
+        <td>{{ "$%.2f"|format(total_prices[i]) }}</td>
+        <td>{{ "$%.2f"|format(net_profits[i]) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
